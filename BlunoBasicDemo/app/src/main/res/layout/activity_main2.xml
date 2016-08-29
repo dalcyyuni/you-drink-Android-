@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.dfrobot.angelo.blunobasicdemo.Main2Activity"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:background="#ffffff">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/buttonScan">
+
+        <TextView
+            android:id="@+id/serialReveicedText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:textSize="10sp"
+            android:layout_below="@+id/editText2"
+            android:layout_alignStart="@+id/editText2"
+            android:layout_alignEnd="@+id/serialSendText"
+            android:layout_alignParentBottom="true"
+            android:visibility="visible"/>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/buttonScan"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="Scan"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/abc_ab_share_pack_holo_light"
+        android:textSize="17dp"
+        android:textColor="@color/abc_secondary_text_material_light" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Sound"
+        android:id="@+id/btn_sound"
+        android:layout_alignBottom="@+id/scrollView"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/abc_ab_share_pack_holo_light"
+        android:textSize="17dp"
+        android:textColor="@color/abc_secondary_text_material_light"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_stop"
+        android:src="@drawable/stop2"
+        android:background="@android:color/transparent"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/linearLayout" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/linearLayout"
+        android:layout_alignTop="@+id/scrollView">
+
+        <FrameLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/btn_start"
+            android:weightSum="1"
+            >
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start"
+                android:id="@+id/btn_start"
+                android:src="@drawable/start1"
+                android:background="@android:color/transparent"
+
+                android:enabled="false"
+                android:layout_gravity="center" />
+
+            <ImageButton
+                android:layout_width="320dp"
+                android:layout_height="310dp"
+                android:text="New Button"
+                android:id="@+id/btn_reverse"
+                android:src="@drawable/rev"
+                android:background="@android:color/transparent"
+
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="200dp" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_drink"
+                android:background="@android:color/transparent"
+                android:src="@drawable/drink"
+
+
+                android:layout_weight="0.5"
+                android:layout_marginLeft="0dp"
+                android:layout_gravity="center" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_below="@+id/btn_start"
+                android:layout_alignParentEnd="true"
+                android:weightSum="1"
+                android:layout_weight="0.78"
+                android:layout_marginTop="200dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp">
+
+                <ImageButton
+                    android:layout_width="1dp"
+                    android:layout_height="300dp"
+                    android:text="Button3"
+                    android:id="@+id/btn_3"
+                    android:layout_below="@+id/btn_start"
+                    android:src="@drawable/lll"
+                    android:background="@android:color/transparent"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_weight="0.5" />
+
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:text="Button44444"
+                    android:id="@+id/btn_4"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/rrr"
+                    android:layout_alignTop="@+id/btn_3"
+                    android:layout_alignEnd="@+id/scrollView"
+
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="0dp" />
+
+
+            </LinearLayout>
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
