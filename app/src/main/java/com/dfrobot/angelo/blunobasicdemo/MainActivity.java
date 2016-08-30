@@ -1,4 +1,4 @@
-package com.dfrobot.angelo.blunobasicdemo;
+package com.youdrink.drinkingcart;
 
 import android.content.Context;
 import android.media.AudioManager;
@@ -184,7 +184,7 @@ public class MainActivity extends BlunoLibrary {
 				// Otherwise, set the URL to null.
 				Uri.parse("http://host/path"),
 				// TODO: Make sure this auto-generated app URL is correct.
-				Uri.parse("android-app://com.dfrobot.angelo.blunobasicdemo/http/host/path")
+				Uri.parse("android-app://com.youdrink.drinkingcart/http/host/path")
 		);
 		AppIndex.AppIndexApi.end(client, viewAction);
 		onStopProcess();                                                        //onStop Process by BlunoLibrary
@@ -247,7 +247,7 @@ public class MainActivity extends BlunoLibrary {
 				// Otherwise, set the URL to null.
 				Uri.parse("http://host/path"),
 				// TODO: Make sure this auto-generated app URL is correct.
-				Uri.parse("android-app://com.dfrobot.angelo.blunobasicdemo/http/host/path")
+				Uri.parse("android-app://com.youdrink.drinkingcart/http/host/path")
 		);
 		AppIndex.AppIndexApi.start(client, viewAction);
 	}

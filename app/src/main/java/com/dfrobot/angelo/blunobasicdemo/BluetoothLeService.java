@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.dfrobot.angelo.blunobasicdemo;
+package com.youdrink.drinkingcart;
 
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;

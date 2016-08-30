@@ -1,4 +1,4 @@
-package com.dfrobot.angelo.blunobasicdemo;
+package com.youdrink.drinkingcart;
 
 import org.junit.Test;
 
