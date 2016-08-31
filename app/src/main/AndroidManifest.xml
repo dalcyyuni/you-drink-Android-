@@ -20,7 +20,7 @@ PackageManager.hasSystemFeature(FEATURE_BLUETOOTH_LE)
         android:icon="@mipmap/ic_launcher"
         android:label="니가마셔"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.NoTitleBar">
+        android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen">
         <activity
             android:name=".MainActivity"
             android:label="니가마셔">

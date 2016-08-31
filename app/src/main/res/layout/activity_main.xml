@@ -22,12 +22,7 @@
             android:id="@+id/serialReveicedText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/serialSendText"
-            android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/editText2"
-            android:layout_below="@+id/editText2"
             android:ems="10"
-            android:textSize="10sp"
             android:visibility="visible" />
     </ScrollView>
 
@@ -39,7 +34,7 @@
         android:background="@drawable/abc_ab_share_pack_holo_light"
         android:text="Scan"
         android:textColor="@color/abc_secondary_text_material_light"
-        android:textSize="17dp" />
+        android:textSize="17sp" />
 
     <Button
         android:id="@+id/btn_sound"
@@ -50,16 +45,18 @@
         android:background="@drawable/abc_ab_share_pack_holo_light"
         android:text="Sound"
         android:textColor="@color/abc_secondary_text_material_light"
-        android:textSize="17dp" />
+        android:textSize="17sp" />
 
-    <ImageButton
-        android:id="@+id/btn_stop"
+    <Button
+        android:id="@+id/btn_pos_top_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/linearLayout"
         android:layout_alignParentTop="true"
-        android:background="@android:color/transparent"
-        android:src="@drawable/stop2" />
+        android:background="@drawable/purple"
+        android:text="Random Move\nTurn On"
+        android:textColor="@color/abc_primary_text_material_dark"
+        android:textSize="12sp" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -82,7 +79,6 @@
                 android:layout_gravity="center"
                 android:background="@android:color/transparent"
                 android:enabled="false"
-
                 android:src="@drawable/start1"
                 android:text="Start" />
 
@@ -93,7 +89,6 @@
                 android:layout_gravity="center"
                 android:background="@android:color/transparent"
                 android:src="@drawable/rev"
-
                 android:text="New Button" />
 
             <ImageButton
@@ -102,19 +97,15 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="0dp"
-
-                android:layout_weight="0.5"
                 android:background="@android:color/transparent"
                 android:src="@drawable/drink" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                android:layout_alignParentEnd="true"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="200dp"
-                android:layout_weight="0.78"
                 android:orientation="horizontal"
                 android:weightSum="1">
 
@@ -133,12 +124,9 @@
                     android:id="@+id/btn_right"
                     android:layout_width="0dp"
                     android:layout_height="300dp"
-                    android:layout_alignEnd="@+id/scrollView"
-                    android:layout_alignTop="@+id/btn_left"
                     android:layout_marginLeft="0dp"
                     android:layout_weight="0.5"
                     android:background="@android:color/transparent"
-
                     android:src="@drawable/rrr"
                     android:text="Button44444" />
             </LinearLayout>

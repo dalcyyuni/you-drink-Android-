@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -21,26 +20,49 @@ import java.util.Random;
 
 public class MainActivity extends BlunoLibrary {
     private Button buttonScan;
-    private Button buttonSerialSend;
-    private EditText serialSendText;
     private TextView serialReceivedText;
 
     private StringBuffer str_read = new StringBuffer();
-
     private ImageButton buttonStart;
-    private ImageButton buttonStop;
-    private String str_code = "";
-    private ImageButton button3;
-    private ImageButton button4;
+    private Button btnPosTopRight;
+    private ImageButton buttonLeft;
+    private ImageButton buttonRight;
     private ImageButton buttonReverse;
     private ImageButton buttonDrink;
     private Button buttonSound;
     private static MediaPlayer music;
     private MediaPlayer music2;
-    private MediaPlayer music3;
     private boolean check_start = false;
-    private boolean check_connect = false;
-    private boolean check_sount = false;
+    private boolean isRandomMove = false;
+
+    private void resetCart() {
+        serialReceivedText.setText("");
+
+        buttonStart.setVisibility(View.VISIBLE);
+        buttonStart.setImageResource(R.drawable.start1);
+        buttonLeft.setVisibility(View.INVISIBLE);
+        buttonRight.setVisibility(View.INVISIBLE);
+        buttonReverse.setVisibility(View.INVISIBLE);
+        buttonDrink.setVisibility(View.INVISIBLE);
+        if (music.isPlaying()) {
+            music.stop();
+            try {
+                music.prepare();
+            } catch (IllegalStateException | IOException e) {
+                e.printStackTrace();
+            }
+            music.seekTo(0);
+        }
+
+        check_start = false;
+
+        serialSend("b");
+        isRandomMove = false;
+        btnPosTopRight.setText("Random Move\nTurn On");
+
+        serialSend("2");
+    }
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -57,9 +79,6 @@ public class MainActivity extends BlunoLibrary {
         // initialize the EditText of the received data
         serialReceivedText = (TextView) findViewById(R.id.serialReveicedText);
 
-        // initialize the EditText of the sending data
-        serialSendText = (EditText) findViewById(R.id.serialSendText);
-
         music = MediaPlayer.create(this, R.raw.title);
         music.setLooping(true);
 
@@ -73,65 +92,51 @@ public class MainActivity extends BlunoLibrary {
                     music.start();
 
                     buttonStart.setImageResource(R.drawable.stop1);
-                    str_code = "1";
+                    btnPosTopRight.setText("Stop");
                     check_start = true;
+                    serialSend("1");
                 } else {
-                    if (music.isPlaying()) {
-                        music.stop();
-                        try {
-                            music.prepare();
-                        } catch (IllegalStateException | IOException e) {
-                            e.printStackTrace();
-                        }
-                        music.seekTo(0);
-                    }
-
-                    buttonStart.setImageResource(R.drawable.start1);
-                    str_code = "2";
-                    check_start = false;
+                    resetCart();
                 }
-
-                serialSend(str_code);
             }
         });
 
-        buttonStop = (ImageButton) findViewById(R.id.btn_stop);
-        buttonStop.setOnClickListener(new OnClickListener() {
+        btnPosTopRight = (Button) findViewById(R.id.btn_pos_top_right);
+        btnPosTopRight.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                serialReceivedText.setText("");
+                if (!check_start) {
+                    if (!isRandomMove) {            // buttonStatus/action : Random Move On
+                        serialSend("a");
 
-                buttonStart.setEnabled(true);
-                buttonStart.setVisibility(View.VISIBLE);
-                buttonStart.setImageResource(R.drawable.start1);
-                button3.setVisibility(View.INVISIBLE);
-                button4.setVisibility(View.INVISIBLE);
-                buttonReverse.setVisibility(View.INVISIBLE);
-                buttonDrink.setVisibility(View.INVISIBLE);
-                music.stop();
+                        isRandomMove = true;
+                        btnPosTopRight.setText("Random Move\nTurn Off");
+                    } else {                        // buttonStatus/action : Random Move Off
+                        serialSend("b");
 
-                str_code = "2";
-                check_start = false;
-                serialSend(str_code);
+                        isRandomMove = false;
+                        btnPosTopRight.setText("Random Move\nTurn On");
+                    }
+                } else {                            // buttonStatus/action : Stop
+                    resetCart();
+                }
             }
         });
-        button3 = (ImageButton) findViewById(R.id.btn_left);
-        button3.setVisibility(View.INVISIBLE);
-        button3.setOnClickListener(new OnClickListener() {
+        buttonLeft = (ImageButton) findViewById(R.id.btn_left);
+        buttonLeft.setVisibility(View.INVISIBLE);
+        buttonLeft.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                str_code = "4";
-                serialSend(str_code);
+                serialSend("4");
             }
         });
 
-        button4 = (ImageButton) findViewById(R.id.btn_right);
-        button4.setVisibility(View.INVISIBLE);
-        button4.setOnClickListener(new OnClickListener() {
+        buttonRight = (ImageButton) findViewById(R.id.btn_right);
+        buttonRight.setVisibility(View.INVISIBLE);
+        buttonRight.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                str_code = "5";
-                serialSend(str_code);
+                serialSend("5");
             }
         });
 
@@ -140,8 +145,7 @@ public class MainActivity extends BlunoLibrary {
         buttonReverse.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                str_code = "3";
-                serialSend(str_code);
+                serialSend("3");
             }
         });
         buttonDrink = (ImageButton) findViewById(R.id.btn_drink);
@@ -273,40 +277,19 @@ public class MainActivity extends BlunoLibrary {
                 break;
             case isConnecting:
                 buttonScan.setText("Connecting");
-                buttonStart.setEnabled(true);
                 break;
             case isToScan:
                 buttonScan.setText("Scan");
                 buttonStart.setEnabled(false);
-                buttonStart.setVisibility(View.VISIBLE);
-                buttonStart.setImageResource(R.drawable.start1);
-                check_start = false;
-                button3.setVisibility(View.INVISIBLE);
-                button4.setVisibility(View.INVISIBLE);
-                buttonReverse.setVisibility(View.INVISIBLE);
-                buttonDrink.setVisibility(View.INVISIBLE);
+                resetCart();
                 break;
             case isScanning:
                 buttonScan.setText("Scanning");
-                buttonStart.setEnabled(false);
-                buttonStart.setVisibility(View.VISIBLE);
-                buttonStart.setImageResource(R.drawable.start1);
-                check_start = false;
-                button3.setVisibility(View.INVISIBLE);
-                button4.setVisibility(View.INVISIBLE);
-                buttonReverse.setVisibility(View.INVISIBLE);
-                buttonDrink.setVisibility(View.INVISIBLE);
                 break;
             case isDisconnecting:
                 buttonScan.setText("isDisconnecting");
                 buttonStart.setEnabled(false);
-                buttonStart.setVisibility(View.VISIBLE);
-                buttonStart.setImageResource(R.drawable.start1);
-                check_start = false;
-                button3.setVisibility(View.INVISIBLE);
-                button4.setVisibility(View.INVISIBLE);
-                buttonReverse.setVisibility(View.INVISIBLE);
-                buttonDrink.setVisibility(View.INVISIBLE);
+                resetCart();
                 break;
             default:
                 break;
@@ -316,8 +299,8 @@ public class MainActivity extends BlunoLibrary {
     //Once connection data received, this function will be called
     @Override
     public void onSerialReceived(String theString) {
-        button3 = (ImageButton) findViewById(R.id.btn_left);
-        button4 = (ImageButton) findViewById(R.id.btn_right);
+        buttonLeft = (ImageButton) findViewById(R.id.btn_left);
+        buttonRight = (ImageButton) findViewById(R.id.btn_right);
         buttonReverse = (ImageButton) findViewById(R.id.btn_reverse);
         buttonStart = (ImageButton) findViewById(R.id.btn_start);
         buttonDrink = (ImageButton) findViewById(R.id.btn_drink);
@@ -334,40 +317,34 @@ public class MainActivity extends BlunoLibrary {
             switch (sss) {
                 case "startSpin":
                     buttonStart.setVisibility(View.INVISIBLE);
-                    button3.setVisibility(View.INVISIBLE);
-                    button4.setVisibility(View.INVISIBLE);
+                    buttonLeft.setVisibility(View.INVISIBLE);
+                    buttonRight.setVisibility(View.INVISIBLE);
                     buttonReverse.setVisibility(View.VISIBLE);
 
                     break;
                 case "goForward":
 
-                    button3.setVisibility(View.VISIBLE);
-                    button4.setVisibility(View.VISIBLE);
+                    buttonLeft.setVisibility(View.VISIBLE);
+                    buttonRight.setVisibility(View.VISIBLE);
                     buttonReverse.setVisibility(View.INVISIBLE);
                     break;
                 case "arrived":
                     music.stop();
 
-                    button3.setVisibility(View.INVISIBLE);
-                    button4.setVisibility(View.INVISIBLE);
+                    buttonLeft.setVisibility(View.INVISIBLE);
+                    buttonRight.setVisibility(View.INVISIBLE);
                     buttonReverse.setVisibility(View.INVISIBLE);
                     buttonDrink.setVisibility(View.VISIBLE);
                     music2 = MediaPlayer.create(this, R.raw.yd_all);
-
                     music2.setLooping(false);
                     music2.start();
 
                     break;
                 case "hold":
-                    music3 = MediaPlayer.create(this, R.raw.one);
+                    MediaPlayer music3 = MediaPlayer.create(this, R.raw.one);
                     music3.setLooping(false);
                     music3.start();
-
-                    check_sount = false;
-                    buttonDrink.setVisibility(View.INVISIBLE);
-                    buttonStart.setVisibility(View.VISIBLE);
-                    buttonStart.setImageResource(R.drawable.start1);
-
+                    resetCart();
                     break;
             }
         }
