@@ -2,148 +2,146 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity"
-    android:focusable="true"
-    android:focusableInTouchMode="true">
+    android:weightSum="1"
+    tools:context="com.youdrink.drinkingcart.MainActivity">
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView"
-        android:layout_below="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/serialSendText">
+        android:layout_below="@+id/buttonScan">
 
         <TextView
-        android:id="@+id/serialReveicedText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:textSize="10sp"
-        android:layout_below="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_alignEnd="@+id/serialSendText"
-        android:layout_alignParentBottom="true" />
+            android:id="@+id/serialReveicedText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/serialSendText"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/editText2"
+            android:layout_below="@+id/editText2"
+            android:ems="10"
+            android:textSize="10sp"
+            android:visibility="visible" />
     </ScrollView>
 
     <Button
-        android:id="@+id/buttonSerialSend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/serialSendText"
-        android:layout_alignRight="@+id/serialSendText"
-        android:text="Send Data" />
-
-    <TextView
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:text="Received Data:"
-        android:textSize="25sp"
-        android:layout_below="@+id/serialSendText"
-        android:layout_alignStart="@+id/serialSendText" />
-
-    <EditText
-        android:id="@+id/serialSendText"
-        android:layout_width="310dp"
-        android:layout_height="40dp"
-        android:background="#555555"
-        android:bufferType="editable"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Data sending Area"
-        android:textColor="#999999"
-        android:textSize="20dip"
-        android:layout_below="@+id/buttonScan"
-        android:layout_centerHorizontal="true" />
-
-    <Button
         android:id="@+id/buttonScan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/serialSendText"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_alignParentTop="true"
-        android:text="Scan" />
+        android:background="@drawable/abc_ab_share_pack_holo_light"
+        android:text="Scan"
+        android:textColor="@color/abc_secondary_text_material_light"
+        android:textSize="17dp" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start"
-        android:id="@+id/btn_start"
-        android:layout_below="@+id/editText2" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stop"
-        android:id="@+id/btn_stop"
-        android:layout_alignTop="@+id/btn_start"
-        android:layout_toEndOf="@+id/btn_start" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sound"
         android:id="@+id/btn_sound"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_alignBottom="@+id/scrollView"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@drawable/abc_ab_share_pack_holo_light"
+        android:text="Sound"
+        android:textColor="@color/abc_secondary_text_material_light"
+        android:textSize="17dp" />
+
+    <ImageButton
+        android:id="@+id/btn_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/linearLayout"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"
+        android:src="@drawable/stop2" />
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/btn_start">
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/scrollView"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/btn_start"
+            android:orientation="vertical"
             android:weightSum="1">
 
-            <Button
+            <ImageButton
+                android:id="@+id/btn_start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button" />
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:enabled="false"
+
+                android:src="@drawable/start1"
+                android:text="Start" />
+
+            <ImageButton
+                android:id="@+id/btn_reverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/rev"
+
+                android:text="New Button" />
+
+            <ImageButton
+                android:id="@+id/btn_drink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="0dp"
+
+                android:layout_weight="0.5"
+                android:background="@android:color/transparent"
+                android:src="@drawable/drink" />
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="289dp"
-                android:layout_height="140dp"
-                android:layout_below="@+id/btn_start"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
                 android:layout_alignParentEnd="true"
-                android:weightSum="1"
-                android:layout_weight="0.56">
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="200dp"
+                android:layout_weight="0.78"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-                <Button
+                <ImageButton
+                    android:id="@+id/btn_left"
+                    android:layout_width="1dp"
+                    android:layout_height="300dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_weight="0.5"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/lll"
+                    android:text="Button3" />
+
+                <ImageButton
+                    android:id="@+id/btn_right"
                     android:layout_width="0dp"
-                    android:layout_height="111dp"
-                    android:text="Button3"
-                    android:id="@+id/btn_3"
-                    android:layout_below="@+id/btn_start"
-                    android:layout_weight="0.5" />
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="105dp"
-                    android:text="Button4"
-                    android:id="@+id/btn_4"
-
-                    android:layout_alignTop="@+id/btn_3"
+                    android:layout_height="300dp"
                     android:layout_alignEnd="@+id/scrollView"
-                    android:layout_alignStart="@+id/buttonSerialSend"
-                    android:layout_weight="0.53" />
+                    android:layout_alignTop="@+id/btn_left"
+                    android:layout_marginLeft="0dp"
+                    android:layout_weight="0.5"
+                    android:background="@android:color/transparent"
+
+                    android:src="@drawable/rrr"
+                    android:text="Button44444" />
             </LinearLayout>
-
-        </LinearLayout>
-
+        </FrameLayout>
     </LinearLayout>
-
 </RelativeLayout>

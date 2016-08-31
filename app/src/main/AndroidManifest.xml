@@ -23,9 +23,11 @@ PackageManager.hasSystemFeature(FEATURE_BLUETOOTH_LE)
         android:theme="@android:style/Theme.NoTitleBar">
         <activity
             android:name=".MainActivity"
-            android:label="니가마셔"
-            android:screenOrientation="portrait">
-
+            android:label="니가마셔">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <service
@@ -38,15 +40,6 @@ PackageManager.hasSystemFeature(FEATURE_BLUETOOTH_LE)
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
-        <activity android:name=".Main2Activity"
-            android:label="니가마셔">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
